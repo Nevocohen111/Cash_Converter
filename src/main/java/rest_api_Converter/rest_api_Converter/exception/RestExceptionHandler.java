@@ -1,4 +1,4 @@
-package rest_api_Converter.rest_api_Converter;
+package rest_api_Converter.rest_api_Converter.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
