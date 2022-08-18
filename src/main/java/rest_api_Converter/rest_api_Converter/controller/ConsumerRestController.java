@@ -9,12 +9,12 @@ import rest_api_Converter.rest_api_Converter.model.Converter;
 import rest_api_Converter.rest_api_Converter.service.ConsumerRestService;
 
 @RestController
-@RequestMapping("/api/currency/convert")
+@RequestMapping("/api/currency")
 public class ConsumerRestController {
     @Autowired
     private ConsumerRestService service;
 
-    @PostMapping("/exchange")
+    @PostMapping("/convert")
     public String convertCash(@RequestBody Converter converter) {
         return service.displayIlsCurrency(converter);
     }
