@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import rest_api_Converter.rest_api_Converter.config.RestConfiguration;
 import rest_api_Converter.rest_api_Converter.model.Converter;
+import rest_api_Converter.rest_api_Converter.model.CurrencyResponse;
 
 @Service
 public class ConsumerRestService {
@@ -22,14 +23,13 @@ public class ConsumerRestService {
     private RestConfiguration restConfiguration;
 
 
-    public String displayIlsCurrency(Converter converter) {
+    public CurrencyResponse displayIlsCurrency(Converter converter) {
         String response = webClient.method(HttpMethod.GET)
                 .uri(restConfiguration.getBaseUrl() +  '?' + "from=" + converter.getFrom() + '&' + "to=" + converter.getTo() + '&' + "amount=" + converter.getAmount())
                 .retrieve()
                 .bodyToMono(String.class).block();
         JsonObject jsonObject = new Gson().fromJson(response, JsonObject.class);
         JsonElement result = jsonObject.get("result");
-        String outcome = "{\n" + " " + '"' + "result" + '"' + ": " + '"' + result + '"' + "\n" + "}";
-        return outcome;
+        return new CurrencyResponse(result.getAsFloat());
     }
 }
