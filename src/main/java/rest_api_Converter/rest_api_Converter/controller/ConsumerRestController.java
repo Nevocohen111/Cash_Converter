@@ -4,19 +4,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rest_api_Converter.rest_api_Converter.model.Converter;
+import rest_api_Converter.rest_api_Converter.model.CurrencyConvertorParams;
 import rest_api_Converter.rest_api_Converter.model.CurrencyResponse;
-import rest_api_Converter.rest_api_Converter.service.ConsumerRestService;
+import rest_api_Converter.rest_api_Converter.service.CurrencyConvertorService;
 
 @RestController
 @RequestMapping("/api/currency")
 public class ConsumerRestController {
     @Autowired
-    private ConsumerRestService service;
+    private CurrencyConvertorService currencyConvertorService;
 
     @PostMapping("/convert")
-    public CurrencyResponse convertCash(@RequestBody Converter converter) {
-        return service.displayIlsCurrency(converter);
+    public CurrencyResponse convertCash(@RequestBody CurrencyConvertorParams params) {
+        return currencyConvertorService.convert(params);
     }
 
 
