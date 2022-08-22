@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-
 public class CustomHttpResponse {
     int statusCode;
     String message;
